@@ -1,0 +1,35 @@
+---
+- hosts: localhost
+  vars:
+    ansible_python_interpreter: /usr/bin/python3.8
+    project_path: /home/zero/Documents/Entreprise/Perso/Echo
+    DOCKER_API_VERSION: 19.03.0
+    # Use the YAML callback plugin.
+    stdout_callback: yaml
+    # Use the stdout_callback when running ad-hoc commands.
+    bin_ansible_callbacks: True
+
+  tasks:
+    - name: On recupere le fichier en local
+      shell: |
+        cat ./docker-compose.yml
+      
+      register: dockercompose
+
+    - name: Cat docker-compose on distant server
+      shell: |
+        cat << EOF  > ./docker-compose.yaml
+          {{ hostvars['localhost']['dockercompose'].stdout.split('\n')[0] }}
+        EOF
+        sed '1s/\s//g' ./docker-compose.yaml -i
+      
+    - name: Cat docker-compose on distant server
+      shell: |
+        echo $(pwd)
+      
+      register: pwd
+
+    - name: Local path linux
+      community.docker.docker_compose:
+        project_src: "{{ pwd.stdout }}"
+...

@@ -1,0 +1,13 @@
+$ORIGIN mayanatech.ddns.net.
+$TTL 1D
+@       IN      SOA     pc1.mayanatech.ddns.net. root.mayanatech.ddns.net. (
+        2006031201      ; serial
+        28800           ; refresh
+        14400           ; retry
+        3600000         ; expire
+        86400 )         ; minimum
+ 
+              NS      pc1.mayanatech.ddns.net.
+ 
+pc1           A       172.28.0.10
+payment       A       172.28.0.15

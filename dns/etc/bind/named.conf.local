@@ -1,0 +1,9 @@
+zone "mayanatech.ddns.net" {
+  type master;
+  file "/etc/bind/pc1.mayanatech.ddns.net";
+};
+
+zone "0.28.172.in-addr.arpa" {
+  type master;
+  file "/etc/bind/pc1.0.28.172";
+};
